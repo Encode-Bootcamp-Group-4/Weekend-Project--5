@@ -5,10 +5,14 @@ import { FormsModule, ReactiveFormsModule  } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { WalletConnectComponent } from './wallet-connect/wallet-connect.component';
+import { LotteryComponent } from './lottery/lottery.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    WalletConnectComponent,
+    LotteryComponent
   ],
   imports: [
     BrowserModule,
