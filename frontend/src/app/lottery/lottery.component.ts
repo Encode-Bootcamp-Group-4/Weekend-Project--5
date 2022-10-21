@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
 
+const LOTTERY_ADDRESS = '0x109565dFdA78De21A7E8459fb008B108f0d9A09b'; 
+const LOTTERYTOKEN_ADDRESS = '0xFa0A807a048D56E5b2Bdd59b570dBe4834bf802e';
 @Component({
   selector: 'app-lottery',
   templateUrl: './lottery.component.html',
@@ -25,4 +27,7 @@ export class LotteryComponent implements OnInit {
     .then((accounts) => (this.walletId = accounts[0]));
   }
 
+  async getLotteryState() {
+    console.log('Getting lottery state...');
+  }
 }
