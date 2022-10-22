@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
-import { Lottery, LotteryToken } from '../../assets/abi';
+import { Lottery, LotteryToken } from '../../assets/abi/';
 
 const LOTTERY_ADDRESS = '0x109565dFdA78De21A7E8459fb008B108f0d9A09b';
 const LOTTERYTOKEN_ADDRESS = '0xFa0A807a048D56E5b2Bdd59b570dBe4834bf802e';
@@ -23,8 +23,8 @@ export class LotteryComponent implements OnInit {
     this.ethereum = (window as any).ethereum;
     this.provider = new ethers.providers.Web3Provider(this.ethereum);
     this.signer = this.provider.getSigner();
-    this.contract = Lottery;
-    this.token = LotteryToken;
+    this.contract = Lottery.abi;
+    this.token = LotteryToken.abi;
   }
 
   ngOnInit(): void {
