@@ -18,13 +18,22 @@ export class LotteryComponent implements OnInit {
   contract: any;
   token: any;
   public ethereum;
+  lottery: Lottery;
 
   constructor(private walletService: WalletService) {
     this.ethereum = (window as any).ethereum;
     this.provider = new ethers.providers.Web3Provider(this.ethereum);
     this.signer = this.provider.getSigner();
-    this.contract = Lottery.abi;
-    this.token = LotteryToken.abi;
+    this.contract = new ethers.Contract(
+      LOTTERY_ADDRESS,
+      Lottery.abi,
+      this.signer
+    );
+    this.token = new ethers.Contract(
+      LOTTERYTOKEN_ADDRESS,
+      LotteryToken.abi,
+      this.signer
+    );
   }
 
   ngOnInit(): void {
