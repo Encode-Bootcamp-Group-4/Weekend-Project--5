@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
-import { Lottery, LotteryToken } from '../../assets/abi/';
+import Lottery from '../../assets/abi/Lottery.json';
+import LotteryToken from '../../assets/abi/LotteryToken.json';
 
 const LOTTERY_ADDRESS = '0x109565dFdA78De21A7E8459fb008B108f0d9A09b';
 const LOTTERYTOKEN_ADDRESS = '0xFa0A807a048D56E5b2Bdd59b570dBe4834bf802e';
@@ -18,7 +19,6 @@ export class LotteryComponent implements OnInit {
   contract: any;
   token: any;
   public ethereum;
-  lottery: Lottery;
 
   constructor(private walletService: WalletService) {
     this.ethereum = (window as any).ethereum;
@@ -43,11 +43,6 @@ export class LotteryComponent implements OnInit {
   }
 
   async getLotteryState() {
-    console.log('Getting lottery state...');
-    alert('Getting lottery state...');
-  }
-
-  async checkState() {
     const state = await this.contract.betsOpen();
     console.log(`The lottery is ${state ? 'open' : 'closed'}\n`);
     if (!state) return;
@@ -70,8 +65,15 @@ export class LotteryComponent implements OnInit {
     );
   }
 
-  async openBets(duration: string) {
-    console.log('Opening bets...');
-    alert('Opening bets...');
+  async openBet(duration: number) {
+    const openBets = await this.contract.openBets(duration);
+    console.log(`openBets\n`);
+    console.log(openBets);
+  }
+
+  async swap(number: string) {
+    const swap = await this.contract.swap(number);
+    console.log(`swap\n`);
+    console.log(swap);
   }
 }
