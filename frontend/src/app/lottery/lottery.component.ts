@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
+import { FormControl } from '@angular/forms';
+
 import Lottery from '../../assets/abi/Lottery.json';
 import LotteryToken from '../../assets/abi/LotteryToken.json';
 
@@ -61,10 +63,11 @@ export class LotteryComponent implements OnInit {
     const closingTime = await this.contract.betsClosingTime();
     const closingTimeDate = new Date(closingTime.toNumber() * 1000);
     console.log(
-      `lottery should close at  ${closingTimeDate.toLocaleDateString()} : ${closingTimeDate.toLocaleTimeString()}\n`
+      `lottery should close at ${closingTimeDate.toLocaleDateString()} : ${closingTimeDate.toLocaleTimeString()}\n`
     );
   }
 
+  _amount = new FormControl(0);
   async openBet(duration: number) {
     const openBets = await this.contract.openBets(duration);
     console.log(`openBets\n`);
