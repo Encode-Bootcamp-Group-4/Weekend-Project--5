@@ -138,11 +138,10 @@ export class LotteryComponent implements OnInit {
     console.log(`Prize claimed (${receipt.transactionHash})\n`);
   }
 
-  // this one is not working
   async displayOwnerPool() {
     const balanceBN = await this.contract.ownerPool();
     const balance = ethers.utils.formatEther(balanceBN);
-    console.log(`The owner pool has (${balance}) Tokens \n`);
+    alert(`The owner pool has (${balance}) Tokens \n`);
     return balance;
   }
 
@@ -156,6 +155,16 @@ export class LotteryComponent implements OnInit {
       });
     const receipt = await tx.wait();
     console.log(`Withdraw confirmed (${receipt.transactionHash})\n`);
+  }
+
+  // these last two don't work - i needs help!
+  _mintAmount = new FormControl(0);
+  async mintTokens(amount: any) {
+    const tx = await this.token
+      .connect(this.walletId)
+      .mint(ethers.utils.parseEther(amount));
+    const receipt = await tx.wait();
+    console.log(`Mint confirmed (${receipt.transactionHash})\n`);
   }
 
   _burnAmount = new FormControl(0);
