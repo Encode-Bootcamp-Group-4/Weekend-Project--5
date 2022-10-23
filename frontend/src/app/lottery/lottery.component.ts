@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
-import { FormControl } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 import Lottery from '../../assets/abi/Lottery.json';
 import LotteryToken from '../../assets/abi/LotteryToken.json';
@@ -46,6 +46,7 @@ export class LotteryComponent implements OnInit {
 
   async getLotteryState() {
     const state = await this.contract.betsOpen();
+    alert(`made it`);
     alert(`The lottery is ${state ? 'open' : 'closed'}\n`);
     // works up to here
     if (!state) return;
@@ -157,14 +158,22 @@ export class LotteryComponent implements OnInit {
     console.log(`Withdraw confirmed (${receipt.transactionHash})\n`);
   }
 
-  // these last two don't work - i needs help!
-  _mintAmount = new FormControl(0);
-  async mintTokens(amount: any) {
-    const tx = await this.token
-      .connect(this.walletId)
-      .mint(ethers.utils.parseEther(amount));
+
+  //it would be better to impot the amount of tokens that you want rather than ETH to send
+  //But need exact tokencost and fee for that 
+  _buyAmount = new FormControl(0);
+  async buyTokens(amount : any) {
+    const options = {value: ethers.utils.parseEther(String(amount))}
+    const allowTx = await this.token
+      .connect(this.signer)
+      .approve(this.contract.address, ethers.constants.MaxUint256)
+      .catch((error: any) => {
+        alert(error.message);
+      });
+    await allowTx.wait();
+    const tx = await this.contract.connect(this.signer).purchaseTokens(options);
     const receipt = await tx.wait();
-    console.log(`Mint confirmed (${receipt.transactionHash})\n`);
+    alert(`Purchase Confirmed (${receipt.transactionHash})\n`);
   }
 
   _burnAmount = new FormControl(0);

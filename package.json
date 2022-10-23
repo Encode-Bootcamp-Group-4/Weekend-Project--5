@@ -1,0 +1,15 @@
+{
+  "dependencies": {
+    "@angular/cli": "^14.2.6",
+    "@angular/core": "^14.2.7",
+    "@angular/router": "^14.2.7",
+    "angular": "^1.8.3",
+    "ethers": "^5.7.2"
+  },
+  "name": "Weekend-Project--5",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": "https://github.com/Encode-Bootcamp-Group-4/Weekend-Project--5",
+  "author": "Shawty1998 <davidsh@tcd.ie>",
+  "license": "MIT"
+}
