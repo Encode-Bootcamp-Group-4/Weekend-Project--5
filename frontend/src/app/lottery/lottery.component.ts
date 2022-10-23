@@ -164,13 +164,6 @@ export class LotteryComponent implements OnInit {
   _buyAmount = new FormControl(0);
   async buyTokens(amount : any) {
     const options = {value: ethers.utils.parseEther(String(amount))}
-    const allowTx = await this.token
-      .connect(this.signer)
-      .approve(this.contract.address, ethers.constants.MaxUint256)
-      .catch((error: any) => {
-        alert(error.message);
-      });
-    await allowTx.wait();
     const tx = await this.contract.connect(this.signer).purchaseTokens(options);
     const receipt = await tx.wait();
     alert(`Purchase Confirmed (${receipt.transactionHash})\n`);
