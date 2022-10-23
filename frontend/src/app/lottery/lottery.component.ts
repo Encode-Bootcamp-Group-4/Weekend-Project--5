@@ -46,29 +46,29 @@ export class LotteryComponent implements OnInit {
 
   async getLotteryState() {
     const state = await this.contract.betsOpen();
-    console.log(`The lottery is ${state ? 'open' : 'closed'}\n`);
+    alert(`The lottery is ${state ? 'open' : 'closed'}\n`);
     if (!state) return;
     this.provider
       .getBlock('latest')
       .then((currentBlock: any) => {
         const currentBlockDate = new Date(currentBlock.timestamp * 1000);
-        console.log(
+        alert(
           `The last block was mined at ${currentBlockDate.toLocaleDateString()} : ${currentBlockDate.toLocaleTimeString()}\n`
         );
       })
       .catch((error: any) => {
-        console.log('error\n');
         alert({ error });
       });
     const closingTime = await this.contract.betsClosingTime();
     const closingTimeDate = new Date(closingTime.toNumber() * 1000);
-    console.log(
+    alert(
       `lottery should close at ${closingTimeDate.toLocaleDateString()} : ${closingTimeDate.toLocaleTimeString()}\n`
     );
   }
 
-  _amount = new FormControl(0);
-  async openBet(duration: number) {
+  _duration = new FormControl(0);
+
+  async openBet(duration: any) {
     const openBets = await this.contract.openBets(duration);
     console.log(`openBets\n`);
     console.log(openBets);

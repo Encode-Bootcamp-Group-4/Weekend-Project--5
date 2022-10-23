@@ -98,17 +98,8 @@
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <p>
-              <input type="number" class="form-control" min=0 max=100 placeholder="Amount of Tokens" [formControl]="_amount"/>
-              <button class="btn btn-primary my-2" (click)="openBet(_amount.value)">Request Voting Tokens</button>
-            </p>
-          </div>
-        </div>
-
-        <div class="row py-lg-5">
-          <div class="col-lg-6 col-md-8 mx-auto">
-            <p>
-              <input id="bet-duration"> Bet Duration
-              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="openBet(3)">Open Bets</button>
+              <input type="number" class="form-control" min=1 max=15 placeholder="Bet Duration (minutes)" [formControl]="_duration"/>
+              <button class="btn btn-primary my-2" (click)="openBet(_duration)">Request Voting Tokens</button>
             </p>
           </div>
         </div>
