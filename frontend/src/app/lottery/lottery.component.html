@@ -49,6 +49,7 @@
     white-space: nowrap;
     -webkit-overflow-scrolling: touch;
     }
+
 </style>
     
 <header>
@@ -75,7 +76,7 @@
 </header>
 
 <main>
-
+  <div class="bg-dark">
     <!-- Title section -->
     <section class="py-5 text-center container">
         <div class="row py-lg-5">
@@ -94,6 +95,100 @@
             </p>
           </div>
         </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <input type="number" class="form-control" min=1 max=15 placeholder="Bet Duration (minutes)" [formControl]="_duration"/>
+              <button class="btn btn-primary my-2" (click)="openBet(_duration.value)">Open the Bet (Owner Only)</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayBalance()">Check Your goerliETH Balance</button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayTokenBalance()">Check Your Token Balance</button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <input type="number" class="form-control" min=1 max=100 placeholder="Bet Amount (tokens)" [formControl]="_betAmount"/>
+              <button class="btn btn-primary my-2" (click)="bet(_betAmount.value)">Bet</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="closeLottery()">Close the Lottery</button>
+            </p>
+          </div> 
+        </div>
+        
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayPrize()"> Check your Winnings! </button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="claimPrize()"> Claim your Winnings! </button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayOwnerPool()"> Display Onwer Pool Balance </button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="drainOwnerPool()"> Drain the Pool! </button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <input type="number" class="form-control" min=1 max=100 placeholder="Burn Amount (tokens)" [formControl]="_mintAmount"/>
+              <button class="btn btn-primary my-2" (click)="bet(_mintAmount.value)">Mint Tokens</button>
+            </p>
+          </div>
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <input type="number" class="form-control" min=1 max=100 placeholder="Burn Amount (tokens)" [formControl]="_burnAmount"/>
+              <button class="btn btn-primary my-2" (click)="bet(_burnAmount.value)">Burn Tokens</button>
+            </p>
+          </div>
+        </div>
+
     </section>
+  </div>
 </main>
 
