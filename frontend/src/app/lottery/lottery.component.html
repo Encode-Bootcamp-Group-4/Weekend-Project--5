@@ -99,7 +99,7 @@
           <div class="col-lg-6 col-md-8 mx-auto">
             <p>
               <input type="number" class="form-control" min=1 max=15 placeholder="Bet Duration (minutes)" [formControl]="_duration"/>
-              <button class="btn btn-primary my-2" (click)="openBet(_duration)">Request Voting Tokens</button>
+              <button class="btn btn-primary my-2" (click)="openBet(_duration.value)">Open the Bet (Owner Only)</button>
             </p>
           </div>
         </div>
@@ -107,9 +107,26 @@
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <p>
-              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="getLotteryState()">Check if Lottery is Open</button>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayBalance()">Check Your goerliETH Balance</button>
             </p>
           </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayTokenBalance()">Check Your Token Balance</button>
+            </p>
+          </div> 
+        </div>
+
+        <div class="row py-lg-5">
+          <div class="col-lg-6 col-md-8 mx-auto">
+            <p>
+              <input type="number" class="form-control" min=1 max=100 placeholder="Bet Amount (tokens)" [formControl]="_betAmount"/>
+              <button class="btn btn-primary my-2" (click)="bet(_betAmount.value)">Bet</button>
+            </p>
+          </div>
         </div>
         
     </section>
