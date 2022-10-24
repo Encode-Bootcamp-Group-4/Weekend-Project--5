@@ -157,7 +157,7 @@
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <p>
-              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayOwnerPool()"> Display Onwer Pool Balance </button>
+              <button class="btn btn-primary my-2" value="submit" type="submit" (click)="displayOwnerPool()"> Display Owner Pool Balance </button>
             </p>
           </div> 
         </div>
@@ -173,8 +173,8 @@
         <div class="row py-lg-5">
           <div class="col-lg-6 col-md-8 mx-auto">
             <p>
-              <input type="number" class="form-control" min=1 max=100 placeholder="Purchase tokens .01 ETH" [formControl]="_buyAmount"/>
-              <button class="btn btn-primary my-2" (click)="buyTokens(_buyAmount.value)">Purchase Tokens</button>
+              <input type="number" class="form-control" min=1 max=100 placeholder="Input amount of ETH here" [formControl]="_buyAmount"/>
+              <button class="btn btn-primary my-2" (click)="buyTokens(_buyAmount.value)">Purchase Tokens (1 PDM = 0.01 ETH)</button>
             </p>
           </div>
         </div>
@@ -183,7 +183,7 @@
           <div class="col-lg-6 col-md-8 mx-auto">
             <p>
               <input type="number" class="form-control" min=1 max=100 placeholder="Burn Amount (tokens)" [formControl]="_burnAmount"/>
-              <button class="btn btn-primary my-2" (click)="bet(_burnAmount.value)">Burn Tokens</button>
+              <button class="btn btn-primary my-2" (click)="burnTokens(_burnAmount.value)">Burn Tokens (1 PDM = 0.01 ETH)</button>
             </p>
           </div>
         </div>

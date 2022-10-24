@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ethers } from 'ethers';
+import { BigNumber, ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
 import {FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 
@@ -158,7 +158,6 @@ export class LotteryComponent implements OnInit {
     console.log(`Withdraw confirmed (${receipt.transactionHash})\n`);
   }
 
-
   //it would be better to impot the amount of tokens that you want rather than ETH to send
   //But need exact tokencost and fee for that 
   _buyAmount = new FormControl(0);
@@ -171,15 +170,10 @@ export class LotteryComponent implements OnInit {
 
   _burnAmount = new FormControl(0);
   async burnTokens(amount: any) {
-    const allowTx = await this.token
-      .connect(this.walletId)
-      .approve(this.contract.address, ethers.constants.MaxUint256);
-    const receiptAllow = await allowTx.wait();
-    console.log(`Allowance confirmed (${receiptAllow.transactionHash})\n`);
-    const tx = await this.contract
-      .connect(this.walletId)
-      .returnTokens(ethers.utils.parseEther(amount));
+    const decimals = 18;
+    const options = BigNumber.from(amount).mul(BigNumber.from(10).pow(decimals));
+    const tx = await this.contract.connect(this.signer).returnTokens(options);
     const receipt = await tx.wait();
-    console.log(`Burn confirmed (${receipt.transactionHash})\n`);
+    alert(`Burn Confirmed (${receipt.transactionHash})\n`);
   }
 }
