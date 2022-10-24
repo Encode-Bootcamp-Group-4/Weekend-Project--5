@@ -46,7 +46,6 @@ export class LotteryComponent implements OnInit {
 
   async getLotteryState() {
     const state = await this.contract.betsOpen();
-    alert(`made it`);
     alert(`The lottery is ${state ? 'open' : 'closed'}\n`);
     // works up to here
     if (!state) return;
@@ -72,7 +71,7 @@ export class LotteryComponent implements OnInit {
   async openBet(duration: any) {
     const currentBlock = await this.provider.getBlock('latest');
     const tx = await this.contract
-      .openBets(currentBlock.timestamp + Number(duration))
+      .openBets(currentBlock.timestamp + Number(duration)*60 )
       .catch((error: any) => {
         alert(error.message);
       });
