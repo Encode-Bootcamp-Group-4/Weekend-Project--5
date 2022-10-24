@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BigNumber, ethers } from 'ethers';
 import { WalletService } from '../services/wallet.service';
-import { FormControl } from '@angular/forms';
+import {FormsModule, ReactiveFormsModule, FormControl } from '@angular/forms';
 
 import Lottery from '../../assets/abi/Lottery.json';
 import LotteryToken from '../../assets/abi/LotteryToken.json';
@@ -71,7 +71,7 @@ export class LotteryComponent implements OnInit {
   async openBet(duration: any) {
     const currentBlock = await this.provider.getBlock('latest');
     const tx = await this.contract
-      .openBets(currentBlock.timestamp + Number(duration))
+      .openBets(currentBlock.timestamp + Number(duration)*60 )
       .catch((error: any) => {
         alert(error.message);
       });
